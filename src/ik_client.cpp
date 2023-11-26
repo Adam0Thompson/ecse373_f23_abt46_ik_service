@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "ik_service/PoseIK.h"
 #include <cstdlib>
+#include "geometry_msgs/Pose.h"
 
 int main(int argc, char **argv)
 {
@@ -8,10 +9,16 @@ int main(int argc, char **argv)
   
   ros::NodeHandle n;
   ros::ServiceClient client = n.serviceClient<ik_service::PoseIK>("pose_ik");
-  ik_service::PoseIK srv;
-  if (client.call(srv))
+  ik_service::PoseIK pose_ik;
+  geometry_msgs::Pose part_pose;
+
+  part_pose.position.x = 0.5;
+  pose_ik.request.part_pose = part_pose;
+
+  if (client.call(pose_ik))
   {
-    ROS_INFO("Response...");
+    ROS_INFO("Response returned %i solutions", pose_ik.response.num_sols);
+  }
   else
   {
     ROS_ERROR("Failed to call service ik_service");

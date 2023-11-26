@@ -1,2 +1,2 @@
 # A vector of joint angles
-float64[8] joint_angles
+float64[6] joint_angles
