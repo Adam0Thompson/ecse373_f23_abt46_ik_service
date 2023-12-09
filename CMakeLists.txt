@@ -205,6 +205,7 @@ add_dependencies(ik_client_node ${ik_client_EXPORTED_TARGETS} ${catkin_EXPORTED_
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
+list(FILTER catkin_LIBRARIES EXCLUDE REGEX .*libur[3|5].*)
 target_link_libraries(ik_service_node ${catkin_LIBRARIES})
 target_link_libraries(ik_client_node ${catkin_LIBRARIES})
 

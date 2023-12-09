@@ -18,7 +18,7 @@ bool pose_ik(ik_service::PoseIK::Request  &req, ik_service::PoseIK::Response &re
   int num_sol;
 
   // Variable to store up to 8 solutions for 6 joint angles
-  float q_sols[8][6];
+  double q_sols[8][6];
 
   // Perform inverse kinematics to find solution(s)
   num_sol = ur_kinematics::inverse(&T[0][0],(double *)&q_sols[0][0], 0.0);
